@@ -3,12 +3,14 @@ class CrapsController < ApplicationController
   end
 
   def create
-    # Create.new.create
+    Crap.create
+
+    flash[:success] = 'You Crapped!!'
     redirect_to root_path
   end
 
   def view
-    # @craps = Craps.all
-    @craps = 100
+    # TODO: viewed flag to be true
+    @craps = Crap.all
   end
 end
