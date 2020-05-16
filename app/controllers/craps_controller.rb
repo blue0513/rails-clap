@@ -10,7 +10,12 @@ class CrapsController < ApplicationController
   end
 
   def view
+  end
+
+  def count_crap
     # TODO: viewed flag to be true
     @craps = Crap.all
+
+    render partial: 'count_crap'
   end
 end

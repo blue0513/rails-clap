@@ -1,1 +1,4 @@
-<%= @craps.count %>
+You are craped !
+<br>
+<!-- fetch count by 2 sec -->
+<%= render_async count_crap_path, interval: 2000 %>
