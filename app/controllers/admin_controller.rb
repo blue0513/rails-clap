@@ -8,8 +8,8 @@ class AdminController < ApplicationController
       return redirect_to admin_login_path
     end
 
-    cookies[:_crap_rails_admin] = {
-      value: 'crap_rails',
+    cookies[:_clap_rails_admin] = {
+      value: 'clap_rails',
       secure: Rails.env.production?,
       httponly: true
     }

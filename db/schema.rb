@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_05_16_080412) do
 
-  create_table "craps", force: :cascade do |t|
+  create_table "claps", force: :cascade do |t|
     t.boolean "viewed", default: false
     t.datetime "created_at", null: false
   end

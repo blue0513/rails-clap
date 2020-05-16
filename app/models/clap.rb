@@ -1,0 +1,2 @@
+class Clap < ApplicationRecord
+end

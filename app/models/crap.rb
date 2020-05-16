@@ -1,2 +1,0 @@
-class Crap < ApplicationRecord
-end
