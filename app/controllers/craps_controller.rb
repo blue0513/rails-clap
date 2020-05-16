@@ -23,7 +23,7 @@ class CrapsController < ApplicationController
 
   def count_crap
     # TODO: viewed flag to be true
-    @craps = Crap.all.reject { |crap| crap.viewed }
+    @craps_count = Crap.all.reject { |crap| crap.viewed }.count
 
     render partial: 'count_crap'
   end
