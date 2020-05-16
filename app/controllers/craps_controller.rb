@@ -10,6 +10,9 @@ class CrapsController < ApplicationController
   end
 
   def view
+    unless cookies[:_crap_rails_admin].present?
+      redirect_to admin_login_path
+    end
   end
 
   def reset

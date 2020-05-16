@@ -1,0 +1,9 @@
+<%= form_tag("/admin/login", method: "post") do %>
+  <%= label_tag(:id, "ID") %>
+  <%= text_field_tag(:id) %>
+
+  <%= label_tag(:password, "Password") %>
+  <%= password_field_tag(:password) %>
+
+  <%= submit_tag("Login") %>
+<% end %>
