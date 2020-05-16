@@ -12,9 +12,18 @@ class CrapsController < ApplicationController
   def view
   end
 
+  def reset
+    Crap.all.each { |crap|
+      crap.update(viewed: true)
+    }
+
+    flash[:success] = 'You reset counter!!'
+    redirect_to view_path
+  end
+
   def count_crap
     # TODO: viewed flag to be true
-    @craps = Crap.all
+    @craps = Crap.all.reject { |crap| crap.viewed }
 
     render partial: 'count_crap'
   end

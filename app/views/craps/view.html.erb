@@ -2,3 +2,8 @@ You are craped !
 <br>
 <!-- fetch count by 2 sec -->
 <%= render_async count_crap_path, interval: 2000 %>
+
+<br>
+<div>
+  <%= button_to "Reset", reset_path, class: 'btn btn-danger' %>
+</div>
