@@ -1,4 +1,6 @@
 class CrapsController < ApplicationController
+  before_action :logged_in?, only: [:view, :reset]
+
   def new
   end
 
@@ -10,9 +12,6 @@ class CrapsController < ApplicationController
   end
 
   def view
-    unless cookies[:_crap_rails_admin].present?
-      redirect_to admin_login_path
-    end
   end
 
   def reset
@@ -29,5 +28,11 @@ class CrapsController < ApplicationController
     @craps_count = Crap.all.reject { |crap| crap.viewed }.count
 
     render partial: 'count_crap'
+  end
+
+  private
+
+  def logged_in?
+    redirect_to admin_login_path if cookies[:_crap_rails_admin].nil?
   end
 end

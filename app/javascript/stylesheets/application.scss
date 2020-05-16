@@ -16,6 +16,12 @@ body {
   font-size: 40px;
 }
 
+.btn-xl {
+  padding: 10px 20px;
+  font-size: 70px;
+  border-radius: 10px;
+}
+
 section {
   overflow: auto;
 }
@@ -121,4 +127,12 @@ p {
 #logo:hover {
   color: #fff;
   text-decoration: none;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
 }
