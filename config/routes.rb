@@ -7,4 +7,6 @@ Rails.application.routes.draw do
 
   get  '/admin/login', to: 'admin#show_login_form'
   post '/admin/login', to: 'admin#login'
+
+  get  '/about', to: 'about#show'
 end
