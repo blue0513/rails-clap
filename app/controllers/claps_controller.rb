@@ -2,16 +2,18 @@ class ClapsController < ApplicationController
   before_action :logged_in?, only: [:view, :reset]
 
   def new
+    @hash_tag = hash_tag
   end
 
   def create
-    Clap.create
+    Clap.create({ hash_tag: hash_tag })
 
-    flash[:success] = 'You Clapped!!'
-    redirect_to root_path
+    flash[:success] = "You Clapped to [#{hash_tag}] !"
+    redirect_to root_path(hash_tag: hash_tag)
   end
 
   def view
+    @hash_tag = hash_tag
   end
 
   def reset
@@ -24,8 +26,12 @@ class ClapsController < ApplicationController
   end
 
   def count_clap
-    all_active_claps = Clap.all.reject { |clap| clap.hidden }
+    all_active_claps =
+      Clap.all.
+        reject { |clap| clap.hidden }.
+        select { |clap| clap.hash_tag == hash_tag }
 
+    @hash_tag = hash_tag
     @new_claps_count = all_active_claps.reject { |clap| clap.viewed }.count
     @active_claps_count = all_active_claps.count
 
@@ -41,5 +47,9 @@ class ClapsController < ApplicationController
 
   def view!(claps)
     claps.each { |clap| clap.update(viewed: true) }
+  end
+
+  def hash_tag
+    params[:hash_tag]
   end
 end

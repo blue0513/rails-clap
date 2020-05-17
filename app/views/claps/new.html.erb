@@ -1,4 +1,9 @@
-You can clap!
-<div class="clap_button">
-  <%= button_to "Clap! 👏", clap_path, class: 'btn btn-info btn-xl' %>
+<div>
+  You can clap! with Hashtag ...
+  <%= form_tag(clap_path, method: "post") do %>
+    <div class="hash-tag">
+      <%= text_field_tag(:hash_tag, @hash_tag, placeholder: '#') %>
+    </div>
+    <%= button_tag("Clap! 👏", class: 'btn btn-info btn-xl btn-block') %>
+  <% end %>
 </div>

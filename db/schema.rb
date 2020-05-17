@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_17_064657) do
+ActiveRecord::Schema.define(version: 2020_05_17_152551) do
 
   create_table "claps", force: :cascade do |t|
     t.boolean "viewed", default: false
     t.datetime "created_at", null: false
     t.boolean "hidden", default: false, null: false
+    t.string "hash_tag"
   end
 
 end
