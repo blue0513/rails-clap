@@ -16,7 +16,7 @@ class ClapsController < ApplicationController
 
   def reset
     Clap.all.each { |clap|
-      clap.update(viewed: true)
+      clap.update(hidden: true)
     }
 
     flash[:success] = 'You reset counter!!'
@@ -24,9 +24,12 @@ class ClapsController < ApplicationController
   end
 
   def count_clap
-    # TODO: viewed flag to be true
-    @claps_count = Clap.all.reject { |clap| clap.viewed }.count
+    all_active_claps = Clap.all.reject { |clap| clap.hidden }
 
+    @new_claps_count = all_active_claps.reject { |clap| clap.viewed }.count
+    @active_claps_count = all_active_claps.count
+
+    view!(all_active_claps)
     render partial: 'count_clap'
   end
 
@@ -34,5 +37,9 @@ class ClapsController < ApplicationController
 
   def logged_in?
     redirect_to admin_login_path if cookies[:_clap_rails_admin].nil?
+  end
+
+  def view!(claps)
+    claps.each { |clap| clap.update(viewed: true) }
   end
 end
