@@ -22,31 +22,34 @@ class ClapsController < ApplicationController
     @hash_tag = hash_tag
   end
 
-  def reset
-    Clap.all.each { |clap|
-      clap.update(hidden: true)
-    }
-
-    flash[:success] = 'You reset counter!!'
-    redirect_to view_path(hash_tag: hash_tag)
-  end
-
   def count_clap
     all_active_claps =
       Clap.all.
         reject { |clap| clap.hidden }.
         select { |clap| clap.hash_tag == hash_tag }
 
-    @active_claps = all_active_claps.sort_by{ |c| c.id }
+    @active_claps = all_active_claps.sort_by { |c| c.id }
     @new_clap = new_clap?(@active_claps&.last)
     latest_sound = all_active_claps.last&.sound_name
     @sound = SOUND_LIST.include?(latest_sound) ? latest_sound : nil
 
     view!(all_active_claps)
+    reset_claps!(hash_tag)
     render partial: 'count_clap'
   end
 
   private
+
+  def reset_claps!(tag)
+    visible_claps =
+      Clap.all.
+        select { |clap| clap.hash_tag == tag }.
+        reject { |clap| clap.hidden }
+
+    if visible_claps.count > Clap::MAX_VISIBLE_CLAPS
+      visible_claps.each { |clap| clap.update(hidden: true) }
+    end
+  end
 
   def new_clap?(clap)
     return nil unless clap.present?
