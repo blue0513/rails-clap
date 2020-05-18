@@ -1,5 +1,5 @@
 <div class="clap">
-  <% @active_claps.each do |c| %>
+  <% @active_claps.present? && @active_claps.each do |c| %>
     <% if c.sound_name == 'clap.mp3' %>
       👏
     <% elsif c.sound_name == 'laugh.mp3' %>

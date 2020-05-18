@@ -9,7 +9,10 @@
 <% end %>
 
 <!-- fetch count by 1 sec -->
-<%= render_async count_clap_path(hash_tag: @hash_tag), interval: Clap::FETCH_INTERVAL * 1000 %>
+<%= render_async count_clap_path(hash_tag: @hash_tag),
+ interval: Clap::FETCH_INTERVAL * 1000,
+ retry_count: 1,
+ error_message: '<h3>Sorry, loading went wrong....</h3>' %>
 
 <div class="footer">
 </div>
