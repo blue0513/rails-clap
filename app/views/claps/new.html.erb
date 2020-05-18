@@ -1,13 +1,25 @@
 <div>
-  You can clap! with Hashtag ...
+  <div class="clap-text">
+    You can clap! with Hashtag ...
+  </div>
+
   <%= form_tag(clap_path, method: "post") do %>
     <div class="hash-tag">
       <%= text_field_tag(:hash_tag, @hash_tag, placeholder: '#') %>
     </div>
-    <%= button_tag "Clap! 👏", value: 'clap.mp3', type: :submit, name: 'sound_name', class: 'btn btn-info btn-xl btn-block' %>
-    <br>
-    Other reactions
-    <%= button_tag("Laugh! 😆", value: 'laugh.mp3', type: :submit, name: 'sound_name', class: 'btn btn-info btn-lg btn-block') %>
-    <%= button_tag("Surprized! 😲", value: 'surprized.mp3', type: :submit, name: 'sound_name', class: 'btn btn-info btn-lg btn-block') %>
+    <div class="clap-button">
+      <%= button_tag "Clap! 👏", value: 'clap.mp3', type: :submit, name: 'sound_name', class: 'btn btn-info btn-xl btn-block' %>
+    </div>
+
+    <div class="clap-text">
+      Other reactions
+    </div>
+
+    <div class="clpp-button">
+      <%= button_tag("Laugh! 😆", value: 'laugh.mp3', type: :submit, name: 'sound_name', class: 'btn btn-info btn-xl btn-block') %>
+    </div>
+    <div class="clap-button">
+      <%= button_tag("Surprized! 😲", value: 'surprized.mp3', type: :submit, name: 'sound_name', class: 'btn btn-info btn-xl btn-block') %>
+    </div>
   <% end %>
 </div>

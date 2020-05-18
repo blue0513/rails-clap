@@ -41,7 +41,7 @@ class ClapsController < ApplicationController
     @new_claps_count = all_active_claps.reject { |clap| clap.viewed }.count
     @active_claps = all_active_claps.sort_by{ |c| c.id }
 
-    latest_sound = all_active_claps.last.sound_name
+    latest_sound = all_active_claps.last&.sound_name
     @sound = SOUND_LIST.include?(latest_sound) ? latest_sound : nil
 
     view!(all_active_claps)

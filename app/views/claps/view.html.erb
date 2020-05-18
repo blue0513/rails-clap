@@ -1,16 +1,18 @@
-You are claped !
-<div class="hash-tag">
-  <%= form_tag(view_path, method: "get") do %>
-    <%= text_field_tag(:hash_tag, @hash_tag, placeholder: '#') %>
-    <%= button_tag("See HashTag", class: 'btn btn-info btn-sm') %>
-  <% end %>
+<div class="clap-text">
+  You are claped !
 </div>
+<%= form_tag(view_path, method: "get") do %>
+  <div class="hash-tag">
+    <%= text_field_tag(:hash_tag, @hash_tag, placeholder: '#') %>
+    <%= button_tag("See HashTag", class: 'btn btn-info btn-lg') %>
+  </div>
+<% end %>
 
 <!-- fetch count by 1 sec -->
 <%= render_async count_clap_path(hash_tag: @hash_tag), interval: 1000 %>
 
 <div class="footer">
-  <div>
-    <%= button_to "Reset", reset_path, class: 'btn btn-danger' %>
+  <div class="reset-button">
+    <%= button_to "Reset", reset_path, class: 'btn btn-danger btn-lg' %>
   </div>
 </div>
