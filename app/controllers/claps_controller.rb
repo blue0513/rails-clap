@@ -1,6 +1,4 @@
 class ClapsController < ApplicationController
-  before_action :logged_in?, only: [:view, :reset]
-
   SOUND_LIST = [
     'clap.mp3',
     'laugh.mp3',
@@ -55,10 +53,6 @@ class ClapsController < ApplicationController
     return nil unless clap.present?
 
     clap.created_at >= (DateTime.current - Clap::FETCH_INTERVAL.second)
-  end
-
-  def logged_in?
-    redirect_to admin_login_path if cookies[:_clap_rails_admin].nil?
   end
 
   def view!(claps)
