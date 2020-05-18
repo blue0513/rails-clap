@@ -10,6 +10,6 @@
   <% end %>
 </div>
 
-<% unless @new_claps_count.zero? || @sound.nil? %>
+<% if @new_clap && @sound %>
   <%= audio_tag @sound, autoplay: true%>
 <% end %>

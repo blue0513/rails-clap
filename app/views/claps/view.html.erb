@@ -9,7 +9,7 @@
 <% end %>
 
 <!-- fetch count by 1 sec -->
-<%= render_async count_clap_path(hash_tag: @hash_tag), interval: 1000 %>
+<%= render_async count_clap_path(hash_tag: @hash_tag), interval: Clap::FETCH_INTERVAL * 1000 %>
 
 <div class="footer">
   <div class="reset-button">

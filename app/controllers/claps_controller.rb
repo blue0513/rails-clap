@@ -37,10 +37,8 @@ class ClapsController < ApplicationController
         reject { |clap| clap.hidden }.
         select { |clap| clap.hash_tag == hash_tag }
 
-    @hash_tag = hash_tag
-    @new_claps_count = all_active_claps.reject { |clap| clap.viewed }.count
     @active_claps = all_active_claps.sort_by{ |c| c.id }
-
+    @new_clap = new_clap?(@active_claps&.last)
     latest_sound = all_active_claps.last&.sound_name
     @sound = SOUND_LIST.include?(latest_sound) ? latest_sound : nil
 
@@ -49,6 +47,12 @@ class ClapsController < ApplicationController
   end
 
   private
+
+  def new_clap?(clap)
+    return nil unless clap.present?
+
+    clap.created_at >= (DateTime.current - Clap::FETCH_INTERVAL.second)
+  end
 
   def logged_in?
     redirect_to admin_login_path if cookies[:_clap_rails_admin].nil?
