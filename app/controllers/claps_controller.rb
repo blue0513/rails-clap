@@ -1,12 +1,18 @@
 class ClapsController < ApplicationController
   before_action :logged_in?, only: [:view, :reset]
 
+  SOUND_LIST = [
+    'clap.mp3',
+    'laugh.mp3',
+    'surprized.mp3'
+  ].freeze
+
   def new
     @hash_tag = hash_tag
   end
 
   def create
-    Clap.create({ hash_tag: hash_tag })
+    Clap.create({ hash_tag: hash_tag, sound_name: sound_name })
 
     flash[:success] = "You Clapped to [#{hash_tag}] !"
     redirect_to root_path(hash_tag: hash_tag)
@@ -33,7 +39,10 @@ class ClapsController < ApplicationController
 
     @hash_tag = hash_tag
     @new_claps_count = all_active_claps.reject { |clap| clap.viewed }.count
-    @active_claps_count = all_active_claps.count
+    @active_claps = all_active_claps.sort_by{ |c| c.id }
+
+    latest_sound = all_active_claps.last.sound_name
+    @sound = SOUND_LIST.include?(latest_sound) ? latest_sound : nil
 
     view!(all_active_claps)
     render partial: 'count_clap'
@@ -51,5 +60,9 @@ class ClapsController < ApplicationController
 
   def hash_tag
     params[:hash_tag]
+  end
+
+  def sound_name
+    params['sound_name']
   end
 end

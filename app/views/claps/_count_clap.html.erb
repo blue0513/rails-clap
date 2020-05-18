@@ -1,9 +1,15 @@
 <div class="clap">
-  <% @active_claps_count.times do |c| %>
-    👏
+  <% @active_claps.each do |c| %>
+    <% if c.sound_name == 'clap.mp3' %>
+      👏
+    <% elsif c.sound_name == 'laugh.mp3' %>
+      😆
+    <% elsif c.sound_name == 'surprized.mp3' %>
+      😲
+    <% end %>
   <% end %>
 </div>
 
-<% unless @new_claps_count.zero? %>
-  <%= audio_tag "clap.mp3", autoplay: true%>
+<% unless @new_claps_count.zero? || @sound.nil? %>
+  <%= audio_tag @sound, autoplay: true%>
 <% end %>
