@@ -13,6 +13,6 @@
 
 <div class="footer">
   <div class="reset-button">
-    <%= button_to "Reset", reset_path, class: 'btn btn-danger btn-lg' %>
+    <%= button_to "Reset", reset_path, params: { hash_tag: @hash_tag }, class: 'btn btn-danger btn-lg' %>
   </div>
 </div>

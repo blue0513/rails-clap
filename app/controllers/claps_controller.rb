@@ -28,7 +28,7 @@ class ClapsController < ApplicationController
     }
 
     flash[:success] = 'You reset counter!!'
-    redirect_to view_path
+    redirect_to view_path(hash_tag: hash_tag)
   end
 
   def count_clap
