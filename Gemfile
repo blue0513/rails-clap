@@ -14,6 +14,8 @@ gem 'render_async', '~> 2.1', '>= 2.1.6'
 gem 'dotenv-rails'
 
 group :development, :test do
+  gem 'pry-rails'
+  gem 'pry-byebug'
   gem 'sqlite3', '~> 1.4'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
