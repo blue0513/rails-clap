@@ -1,24 +1,39 @@
-# README
+# Rails Clap
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Clap to others via hashtag.
 
-Things you may want to cover:
+## Features
 
-* Ruby version
+Using hashtas, you can send/accept others reactions.
 
-* System dependencies
++ You can send reactions to others
++ You can see reactions with Emoji & Sound
 
-* Configuration
+## Demo
 
-* Database creation
+Running on [Heroku/ClapTo!](https://clap-to.herokuapp.com/).
 
-* Database initialization
+## Usage
 
-* How to run the test suite
+### Home
 
-* Services (job queues, cache servers, search engines, etc.)
+1. Input hashtag like `#clap_to`
+2. Send reactions!
 
-* Deployment instructions
+### View
 
-* ...
+1. Input hashtag like `#clap_to`
+2. You can see reactions from others with emoji & sound
+
+## Development
+
+It's a pure Rails project.
+
+```sh
+$ bundle install
+$ bundle exec rails s -b 0.0.0.0
+```
+
+## Contribute
+
+Feel free to PR!
